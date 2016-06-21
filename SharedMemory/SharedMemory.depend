@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1466505596 source:/home/ubuntu/Programming/BoostLibrary/SharedMemory/main.cpp
+	<boost/interprocess/shared_memory_object.hpp>
+	<iostream>
+
