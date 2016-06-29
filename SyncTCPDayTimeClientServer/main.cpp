@@ -26,13 +26,14 @@ void make_client()
             boost::system::error_code error;
 
             size_t len = socket.read_some(boost::asio::buffer(buf),error);
+            cout.write(buf.data(),len);
 
             if ( error = boost::asio::error::eof)
                 break;
             else if ( error )
                 throw boost::system::system_error(error);
 
-            cout.write(buf.data(),len);
+
         }
     }
     catch(exception &e )
@@ -64,10 +65,9 @@ void make_server()
             cout << "Recieved request " << endl;
 
             string msg = make_daytime_string();
-
             boost::system::error_code ignored_error;
-            boost::asio::write(socket,boost::asio::buffer(msg), ignored_error);
-
+            boost::asio::write(socket, boost::asio::buffer(msg), boost::asio::transfer_all(), ignored_error);
+            cout << msg << endl;
         }
     }
     catch(exception &ex)
